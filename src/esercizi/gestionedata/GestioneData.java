@@ -1,3 +1,5 @@
+package esercizi.gestionedata;
+
 import java.util.Scanner;
 
 public class GestioneData {
@@ -20,6 +22,16 @@ public class GestioneData {
             tentativi++;
             System.out.print("Inserisci l'anno (0 - 2026) [Tentativo "
                     + tentativi + "/3]: ");
+
+            // Controlliamo che l'utente abbia digitato un numero intero,
+            // altrimenti scanner.nextInt() lancerebbe un'eccezione e
+            // il programma si bloccherebbe
+            if (!scanner.hasNextInt()) {
+                System.out.println("Valore non valido! Devi inserire un numero intero.");
+                scanner.next(); // "consumiamo" il token errato per non restare bloccati nel ciclo
+                continue;
+            }
+
             anno = scanner.nextInt();
 
             if (anno >= 0 && anno <= 2026) {
@@ -33,8 +45,8 @@ public class GestioneData {
         // Se dopo 3 tentativi l'anno è ancora errato, blocchiamo il programma
         if (!annoValido) {
             System.out.println("Tentativi esauriti per l'anno. Programma terminato.");
+            scanner.close();
             return;
-
         }
 
         // Controllo anno bisestile
@@ -49,6 +61,13 @@ public class GestioneData {
         do {
             tentativi++;
             System.out.print("Inserisci il mese (1 - 12) [Tentativo " + tentativi + "/3]: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Valore non valido! Devi inserire un numero intero.");
+                scanner.next();
+                continue;
+            }
+
             mese = scanner.nextInt();
 
             if (mese >= 1 && mese <= 12) {
@@ -61,6 +80,7 @@ public class GestioneData {
 
         if (!meseValido) {
             System.out.println("Tentativi esauriti per il mese. Programma terminato.");
+            scanner.close();
             return;
         }
 
@@ -72,6 +92,13 @@ public class GestioneData {
         do {
             tentativi++;
             System.out.print("Inserisci il giorno (1 - " + maxGiorni + ") [Tentativo " + tentativi + "/3]: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Valore non valido! Devi inserire un numero intero.");
+                scanner.next();
+                continue;
+            }
+
             giorno = scanner.nextInt();
 
             if (giorno >= 1 && giorno <= maxGiorni) {
@@ -84,6 +111,7 @@ public class GestioneData {
 
         if (!giornoValido) {
             System.out.println("Tentativi esauriti per il giorno. Programma terminato.");
+            scanner.close();
             return;
         }
 
